@@ -13,9 +13,12 @@ Gem::Specification.new do |gem|
 
   gem.add_runtime_dependency 'grape', '>= 0.19.0'
   gem.add_runtime_dependency 'activesupport'
-  gem.add_runtime_dependency 'rake'
+  gem.add_runtime_dependency 'rake', '>= 11.0.0'
 
   gem.add_development_dependency 'pry'
-  gem.add_development_dependency 'rspec'
+
+  # Avoiding "NoMethodError: undefined method `last_comment' for #<Rake::Application:0x00000002b90698>"
+  # See https://github.com/rspec/rspec-core/commit/8e723fc805e901ac4fa5483837138b175d411d6e
+  gem.add_development_dependency 'rspec', '>= 3.5.0'
   gem.add_development_dependency 'rubocop'
 end
