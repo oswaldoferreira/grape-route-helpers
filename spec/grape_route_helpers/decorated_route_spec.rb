@@ -73,6 +73,8 @@ describe GrapeRouteHelpers::DecoratedRoute do
 
       it "returns the route's helper name for each version" do
         helper_names = ping_route.helper_names
+
+        # Singular #version call on newer Grape versions return the last version on the list.
         expect(helper_names.size).to eq(api.versions.size)
       end
     end
@@ -152,6 +154,7 @@ describe GrapeRouteHelpers::DecoratedRoute do
   describe '#segment_to_value' do
     context 'when segment is dynamic' do
       it 'returns the value the segment corresponds to' do
+
         result = index_route.segment_to_value(':version')
         expect(result).to eq('v1')
       end

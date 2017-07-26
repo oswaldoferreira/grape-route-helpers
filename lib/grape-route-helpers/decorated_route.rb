@@ -64,14 +64,9 @@ module GrapeRouteHelpers
     end
 
     def route_versions
-      return [nil] if (route_version.nil? || route_version.empty?)
+      return [nil] if route_version.nil? || route_version.empty?
 
-      if route_version.is_a?(String)
-        version_pattern = /[^\[",\]\s]+/
-        route_version.scan(version_pattern)
-      else
-        route_version
-      end
+      [route_version].flatten
     end
 
     def path_helper_name(opts = {})
