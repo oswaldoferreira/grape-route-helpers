@@ -64,12 +64,9 @@ module GrapeRouteHelpers
     end
 
     def route_versions
-      version_pattern = /[^\[",\]\s]+/
-      if route_version
-        route_version.scan(version_pattern)
-      else
-        [nil]
-      end
+      return [nil] if route_version.nil? || route_version.empty?
+
+      [route_version].flatten
     end
 
     def path_helper_name(opts = {})
@@ -108,7 +105,7 @@ module GrapeRouteHelpers
     end
 
     def path_segments
-      pattern = %r{\(/?\.:?\w+\)|/|\*}
+      pattern = %r{\(\/?\.:?\w+\)|\?|\*|\/}
       route_path.split(pattern).reject(&:blank?)
     end
 

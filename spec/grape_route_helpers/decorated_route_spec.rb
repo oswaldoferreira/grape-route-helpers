@@ -73,7 +73,9 @@ describe GrapeRouteHelpers::DecoratedRoute do
 
       it "returns the route's helper name for each version" do
         helper_names = ping_route.helper_names
-        expect(helper_names.size).to eq(api.version.size)
+
+        # Singular #version call on newer Grape versions return the last version on the list.
+        expect(helper_names.size).to eq(api.versions.size)
       end
     end
 
